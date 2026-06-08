@@ -1,0 +1,159 @@
+{
+  "name": "errors",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f37efd8f-16e6-4779-b456-51b5d02b5d72",
+      "name": "ERRORS"
+    },
+    {
+      "parameters": {
+        "sendTo": "maryanne.kinyanjui@student.moringaschool.com , simon.njuguna1@student.moringaschool.com, paul.wahome@student.moringaschool.com",
+        "subject": "Forex Market Update: Key Currency Rates Against the Kenyan Shilling",
+        "emailType": "text",
+        "message": "=🚨 Workflow Failure Detected\n\nWorkflow:\n{{ $('ERRORS').item.json.workflow.name }}\n\nFailed Node:\n{{ $('ERRORS').item.json.execution.lastNodeExecuted }}\n\nError Message:\n{{ $('ERRORS').item.json.execution.error.message }}\n\nTime:\n{{ $now }}\n\nPlease investigate the issue.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "462694cf-263e-4b18-874c-d6b631f59916",
+      "name": "Send a message",
+      "webhookId": "5af18f84-ab78-4626-9782-e22755cc0990",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "uClAil3mj5svKY8h",
+          "name": "mkay gmail"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1oQjJAZVClkvxsQp2GIMjJ6KP1Hge901AEdK3IGs6us8/edit?usp=sharing",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 600721395,
+          "mode": "list",
+          "cachedResultName": "ErrorLog",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oQjJAZVClkvxsQp2GIMjJ6KP1Hge901AEdK3IGs6us8/edit#gid=600721395"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date": "={{ $now }}",
+            "Workflow Name": "={{ $json.workflow.name }}",
+            "Error Message": "={{ $json.execution.error.message }}",
+            "Failed Node": "={{ $json.execution.lastNodeExecuted }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Workflow Name",
+              "displayName": "Workflow Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Failed Node",
+              "displayName": "Failed Node",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Error Message",
+              "displayName": "Error Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "73d07ccf-9c66-4f47-b5f7-33a4031f276c",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vavbbBSkkcvpuObM",
+          "name": "Google Sheets account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "ERRORS": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "24cec6d8-0def-4996-b196-90fbffbccd54",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e99daf14c79c0154b51a81f3f7ae5a32a676ca7586c42b2395dde223381c9944"
+  },
+  "id": "1YzEV43EtgDPH85y",
+  "tags": []
+}

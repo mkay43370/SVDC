@@ -1,0 +1,2154 @@
+{
+  "name": "Automated Weekly Newsletter Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                5
+              ],
+              "triggerAtHour": 14
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -1472,
+        1040
+      ],
+      "id": "30dcf72a-5c30-469d-92a4-714e4871bd8f",
+      "name": "Weekly Newsletter Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://techcabal.com/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1248,
+        240
+      ],
+      "id": "490c171f-c87b-4959-b4d5-e5248f381f87",
+      "name": "TechCabal",
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a Field Reporter for Nairobi Nexus.\n\nSource: {{ $json.source }}\n\nAnalyze the article content below and identify the single most important technology or business news story.\n\nArticle Content:\n{{ $json.source_html }}\n\nReturn ONLY valid JSON:\n\n{\n\"source\": \"{{ $json.source }}\",\n\"headline\": \"Most important headline\",\n\"summary\": \"2-3 sentence summary of the story\",\n\"status\": \"success\"\n}\n\nRules:\n\n* Ignore HTML tags, metadata, SEO tags, and page boilerplate.\n* Focus on actual news content.\n* No markdown.\n* No explanations.\n* Return valid JSON only.\n\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -528,
+        128
+      ],
+      "id": "6b1235c3-f428-43f8-8ed3-d47d891b798d",
+      "name": "Summarize TechCabal",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "url": "https://www.businessdailyafrica.com/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1248,
+        640
+      ],
+      "id": "0f185ea8-dcd3-4008-a52b-a30bc86e0c00",
+      "name": "Business Daily",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a Field Reporter for Nairobi Nexus.\n\nSource: {{ $json.source }}\n\nAnalyze the article content below and identify the single most important technology or business news story.\n\nArticle Content:\n{{ $json.source_html }}\n\nReturn ONLY valid JSON:\n\n{\n\"source\": \"{{ $json.source }}\",\n\"headline\": \"Most important headline\",\n\"summary\": \"2-3 sentence summary of the story\",\n\"status\": \"success\"\n}\n\nRules:\n\n* Ignore HTML tags, metadata, SEO tags, and page boilerplate.\n* Focus on actual news content.\n* No markdown.\n* No explanations.\n* Return valid JSON only.\n\n\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -528,
+        528
+      ],
+      "id": "1526b55c-0bf1-4c6b-8819-10a7fe3973ac",
+      "name": "Summarize Business Daily",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "url": "https://www.the-star.co.ke/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1248,
+        1040
+      ],
+      "id": "ae5f4e50-9616-4082-bae0-10862fd1e035",
+      "name": "The Star",
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "https://www.standardmedia.co.ke/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1248,
+        1440
+      ],
+      "id": "639d40ad-6510-4ecc-ac63-dddf6488cb20",
+      "name": "Standard",
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "https://kenyanwallstreet.com/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1248,
+        1840
+      ],
+      "id": "7397fbc9-b842-403f-86cb-42ff9461bd81",
+      "name": "Kenyan WallStreet",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -576,
+        352
+      ],
+      "id": "8a639bf7-50af-4cd0-aea2-d7e8c261529f",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "WR3iiP5D6FLhBd3C",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $now }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -448,
+        352
+      ],
+      "id": "b3e8e823-7aee-4a27-8640-029133a3267a",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -576,
+        752
+      ],
+      "id": "7fb49f6b-4f14-4a10-adee-4babc3f3383f",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "WR3iiP5D6FLhBd3C",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $now }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -448,
+        752
+      ],
+      "id": "aeceda19-ecf2-4122-bd6f-a662562e4b19",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -576,
+        1152
+      ],
+      "id": "d040b715-e0fb-4690-8230-599aff790871",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "WR3iiP5D6FLhBd3C",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $now }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -448,
+        1152
+      ],
+      "id": "a2503090-030c-4ab9-a7c1-28870925cf97",
+      "name": "Simple Memory2"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -576,
+        1552
+      ],
+      "id": "92979e04-0f89-4aa3-a7fa-847f7cce8ace",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "WR3iiP5D6FLhBd3C",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $now }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -448,
+        1552
+      ],
+      "id": "b5875c67-5c55-46fa-b08d-fd7fadcab081",
+      "name": "Simple Memory3"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {
+          "maxTokens": 3000,
+          "textFormat": {
+            "textOptions": {
+              "type": "text",
+              "verbosity": "low"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -576,
+        2064
+      ],
+      "id": "f8d53a34-a5ba-4092-9a34-b8b47191a268",
+      "name": "OpenAI Chat Model4",
+      "credentials": {
+        "openAiApi": {
+          "id": "WR3iiP5D6FLhBd3C",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $now }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -448,
+        2064
+      ],
+      "id": "082cc795-a7fd-4548-b2c6-2f52d6fce4be",
+      "name": "Simple Memory4"
+    },
+    {
+      "parameters": {
+        "numberInputs": 5
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        336,
+        992
+      ],
+      "id": "2ede414f-6151-46e7-a5de-840625e9a512",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        784,
+        1264
+      ],
+      "id": "d6c199ed-253f-4315-866d-e91991ba8f73",
+      "name": "OpenAI Chat Model5",
+      "credentials": {
+        "openAiApi": {
+          "id": "WR3iiP5D6FLhBd3C",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $now }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1040,
+        1264
+      ],
+      "id": "1e975ab2-dfad-4210-9851-3fc30552997d",
+      "name": "Simple Memory5"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        912,
+        1264
+      ],
+      "id": "994c1c6c-b43e-4662-ae43-832087d3df84",
+      "name": "Mistral Cloud Chat Model",
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "9RkX5mYqGQIbtGll",
+          "name": "Mistral Cloud account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1oQjJAZVClkvxsQp2GIMjJ6KP1Hge901AEdK3IGs6us8/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Drafts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oQjJAZVClkvxsQp2GIMjJ6KP1Hge901AEdK3IGs6us8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date": "={{ $now }}",
+            "Successful Sources": "=5 sources",
+            "Model Used": "gpt-5-mini",
+            "Draft Body": "={{ $json.newsletter_intro }}",
+            "Workflow Version": "v2.0 - Production Hardened"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Successful Sources",
+              "displayName": "Successful Sources",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Draft Body",
+              "displayName": "Draft Body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Model Used",
+              "displayName": "Model Used",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Workflow Version",
+              "displayName": "Workflow Version",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1648,
+        896
+      ],
+      "id": "424b39fb-f49e-41e9-8d13-8ab0b3b5d004",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vavbbBSkkcvpuObM",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "maryanne.kinyanjui@student.moringaschool.com,simon.njuguna1@student.moringaschool.com,paul.wahome@student.moringaschool.com",
+        "subject": "Nairobi Nexus Weekly Draft",
+        "emailType": "text",
+        "message": "={{ $json.newsletter_intro }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1616,
+        704
+      ],
+      "id": "724473df-01ed-46e3-ae54-38be034abc2a",
+      "name": "Send a message",
+      "webhookId": "134d8c1a-7508-4153-8c3c-36cbe64326c2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "uClAil3mj5svKY8h",
+          "name": "mkay gmail"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mistralAiTool",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        1152
+      ],
+      "id": "47f2b164-a425-4312-901d-969dfe1996bd",
+      "name": "Extract text in Mistral AI",
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "9RkX5mYqGQIbtGll",
+          "name": "Mistral Cloud account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mistralAiTool",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        1552
+      ],
+      "id": "ddde0ea9-4080-424f-b281-7e039496c896",
+      "name": "Extract text in Mistral AI1",
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "9RkX5mYqGQIbtGll",
+          "name": "Mistral Cloud account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mistralAiTool",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        2064
+      ],
+      "id": "b82b52b9-8223-4029-82b4-1cf952724ae1",
+      "name": "Extract text in Mistral AI2",
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "9RkX5mYqGQIbtGll",
+          "name": "Mistral Cloud account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mistralAiTool",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        352
+      ],
+      "id": "cd7bad27-2d6b-434e-8f46-b6649d1eb201",
+      "name": "Extract text in Mistral AI3",
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "9RkX5mYqGQIbtGll",
+          "name": "Mistral Cloud account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mistralAiTool",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        752
+      ],
+      "id": "2da4254a-1b02-451d-87fe-3ea16eadef76",
+      "name": "Extract text in Mistral AI4",
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "9RkX5mYqGQIbtGll",
+          "name": "Mistral Cloud account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a Field Reporter for Nairobi Nexus.\n\nSource: {{ $json.source }}\n\nAnalyze the article content below and identify the single most important technology or business news story.\n\nArticle Content:\n{{ $json.source_html }}\n\nReturn ONLY valid JSON:\n\n{\n\"source\": \"{{ $json.source }}\",\n\"headline\": \"Most important headline\",\n\"summary\": \"2-3 sentence summary of the story\",\n\"status\": \"success\"\n}\n\nRules:\n\n* Ignore HTML tags, metadata, SEO tags, and page boilerplate.\n* Focus on actual news content.\n* No markdown.\n* No explanations.\n* Return valid JSON only.\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -528,
+        928
+      ],
+      "id": "58704941-37b1-45e7-8e06-44088a5e2709",
+      "name": "Summarize The Star",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a Field Reporter for Nairobi Nexus.\n\nSource: {{ $json.source }}\n\nAnalyze the article content below and identify the single most important technology or business news story.\n\nArticle Content:\n{{ $json.source_html }}\n\nReturn ONLY valid JSON:\n\n{\n\"source\": \"{{ $json.source }}\",\n\"headline\": \"Most important headline\",\n\"summary\": \"2-3 sentence summary of the story\",\n\"status\": \"success\"\n}\n\nRules:\n\n* Ignore HTML tags, metadata, SEO tags, and page boilerplate.\n* Focus on actual news content.\n* No markdown.\n* No explanations.\n* Return valid JSON only.\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -528,
+        1328
+      ],
+      "id": "b76d2dd2-1e22-444b-be4f-27406d3c1842",
+      "name": "Summarize Standard",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a Field Reporter for Nairobi Nexus.\n\nSource: {{ $json.source }}\n\nAnalyze the article content below and identify the single most important technology or business news story.\n\nArticle Content:\n{{ $json.source_html }}\n\nReturn ONLY valid JSON:\n\n{\n\"source\": \"{{ $json.source }}\",\n\"headline\": \"Most important headline\",\n\"summary\": \"2-3 sentence summary of the story\",\n\"status\": \"success\"\n}\n\nRules:\n\n* Ignore HTML tags, metadata, SEO tags, and page boilerplate.\n* Focus on actual news content.\n* No markdown.\n* No explanations.\n* Return valid JSON only.\n\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -528,
+        1840
+      ],
+      "id": "75331335-d53a-4853-846b-7de46543738e",
+      "name": "Summarize Kenyan Wallstreet",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are Kamau, the witty tech editor of Nairobi Nexus.\n\nYou are receiving validated newsroom summaries from multiple trusted AI field reporters.\n\nGenerate a concise newsletter intro.\n\nSTRICT RULES:\n\n1. Under 200 words\n2. Plain readable text only\n3. Use Kenyan slang naturally:\n\n   * Bazeng\n   * Form ni gani\n   * Sasa\n4. No markdown tables\n5. No HTML\n6. No explanations\n7. Maintain professional but witty tone\n8. Mention only available successful stories\n\nInput summaries:\n{{ JSON.stringify($json.summaries, null, 2) }}\n\nReturn ONLY valid JSON in this exact format:\n\n{\n\"newsletter_intro\": \"string\",\n\"word_count\": number,\n\"model_used\": \"GPT-4o\",\n\"status\": \"success\"\n}\nReturn ONLY valid JSON.\nDo not wrap the JSON in markdown code blocks.\nDo not use ```json.\nDo not include any explanation before or after the JSON.",
+        "needsFallback": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        848,
+        1040
+      ],
+      "id": "8f4985d4-f713-47ef-a755-cb6ca7bc77cf",
+      "name": "chief editor"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ce5ce0c2-28e8-44f7-b5ca-08c4cd3a7936",
+              "leftValue": "={{ $json.headline }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "2f672444-30e3-4caa-ae94-2578dc2a1abc",
+              "leftValue": "={{ $json.summary }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "87048bf9-a260-4ce8-bd38-1775488b67a8",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "522a7fb2-00f9-449b-8686-dff790a9c90d",
+              "leftValue": "={{ $json.source }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        112,
+        240
+      ],
+      "id": "3e89905a-ea9d-4fe5-be1b-a24544b07750",
+      "name": "IF: Valid_JSON?",
+      "notes": "Prevents malformed AI outputs from entering downstream merge operations.\n"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  return {\n    json: JSON.parse(item.json.output)\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -112,
+        240
+      ],
+      "id": "4693f10f-7fad-4c60-86eb-59b79bbbbbc3",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  return {\n    json: JSON.parse(item.json.output)\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -112,
+        640
+      ],
+      "id": "c59f64d2-0a21-49c9-8534-b73b873fed2e",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  return {\n    json: JSON.parse(item.json.output)\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -112,
+        1040
+      ],
+      "id": "314fab7b-76ab-4c61-85b0-fee90c827ae5",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  return {\n    json: JSON.parse(item.json.output)\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -112,
+        1440
+      ],
+      "id": "52b8f473-d03f-4602-97ca-f739c31d9f79",
+      "name": "Code in JavaScript3"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  return {\n    json: JSON.parse(item.json.output)\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -112,
+        1840
+      ],
+      "id": "4af67b2f-e7c3-4a02-9d6d-8ad69f32c8b4",
+      "name": "Code in JavaScript4"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "87d12a06-dd0f-46f6-a508-ba64c1dccc71",
+              "leftValue": "={{ $json.source }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "f112732f-fb3c-4e17-9ac1-4682824692ed",
+              "leftValue": "={{ $json.headline }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "ceb4bee3-ca06-4f7c-8f8a-3cc03b01adb2",
+              "leftValue": "={{ $json.summary }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "59f12aea-3b91-4109-a401-77a96a6ef2d1",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        112,
+        1840
+      ],
+      "id": "01504610-e094-4eb6-995e-7b70e1b12bc9",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "62f9da42-c389-45f1-8cd0-46fdd25fdb17",
+              "leftValue": "={{ $json.source }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "c3ad33ea-65a6-43d5-a7ab-34d0cb582282",
+              "leftValue": "={{ $json.headline }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "b89a5432-94e7-428d-9b79-4827d42f1528",
+              "leftValue": "={{ $json.summary }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "758244d2-6513-424f-b67c-401bf9b86378",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        112,
+        640
+      ],
+      "id": "eb18755d-5be9-4382-85db-1f2e777ad170",
+      "name": "IF: Valid_JSON?1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a3e035d5-97e6-40dd-ad22-83cd6e9cc1a6",
+              "leftValue": "={{ $json.source }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "b12284cb-0b79-4137-be31-f829bb0c1d90",
+              "leftValue": "={{ $json.summary }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "d432d2b8-fbd8-4701-9fef-bbc96ee3494d",
+              "leftValue": "={{ $json.headline }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "759beaf7-3919-4c3e-95e3-cc0e7ed1697f",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        112,
+        1040
+      ],
+      "id": "62d6c0ca-fe62-4e5b-a25e-1db39f17c60e",
+      "name": "IF: Valid_JSON?2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c08d4d82-fb33-4314-977d-5955ba3fb237",
+              "leftValue": "={{ $json.source }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "bf276b4f-0b93-4ba6-b289-168d7d03a569",
+              "leftValue": "={{ $json.headline }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "e442831f-d1ee-4df0-a34e-7daebe101c08",
+              "leftValue": "={{ $json.summary }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "fb0a58ed-77e8-4faa-94ed-e9a22763002f",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        112,
+        1440
+      ],
+      "id": "a507f149-5a5e-41d3-bd24-0cc4bd9b98ab",
+      "name": "IF: Valid_JSON?3"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  let output = item.json.output;\n\n  output = output.trim();\n\n  return {\n    json: JSON.parse(output)\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1248,
+        1040
+      ],
+      "id": "c1a8ec60-596d-41ed-bcb4-0bd2eaa7b0ca",
+      "name": "Code in JavaScript5"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "8e8a9a46-3a2d-4e42-b235-61f2a51cb854",
+              "leftValue": "={{ $json.newsletter_intro }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "27b65202-420d-4fd7-9660-670b51af8e15",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1472,
+        1040
+      ],
+      "id": "fc436984-979d-49bb-a2ee-42723b027915",
+      "name": "IF: Newsletter_Valid?",
+      "notes": "Ensures only validated newsletter drafts proceed to logging and delivery.\n"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Generate a simplified newsletter intro using available summaries.\n\nSTRICT RULES:\n\n1. Under 200 words\n2. Plain text only\n3. Use simple professional tone\n4. Return ONLY valid JSON\n\nInput summaries:\n{{ JSON.stringify($json, null, 2) }}\n\nReturn ONLY valid JSON in this format:\n\n{\n\"newsletter_intro\": \"string\",\n\"word_count\": number,\n\"model_used\": \"GPT-4o-mini\",\n\"status\": \"fallback-success\"\n}\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1808,
+        1104
+      ],
+      "id": "489ed243-7047-4f28-9165-5b52e185e150",
+      "name": "Backup AI AgentAgent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        1744,
+        1360
+      ],
+      "id": "b5382db0-e006-4c74-ad7f-3622212648e3",
+      "name": "OpenAI Chat Model6",
+      "credentials": {
+        "openAiApi": {
+          "id": "WR3iiP5D6FLhBd3C",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $now }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1904,
+        1376
+      ],
+      "id": "ef1d31a9-802b-4689-97a7-3e3ac3add52a",
+      "name": "Simple Memory6"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mistralAiTool",
+      "typeVersion": 1,
+      "position": [
+        2096,
+        1344
+      ],
+      "id": "671f17b8-7833-4d1c-87af-5ec40b116bb3",
+      "name": "Extract text in Mistral AI5",
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "9RkX5mYqGQIbtGll",
+          "name": "Mistral Cloud account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  return {\n    json: {\n      source: item.json.source,\n      http_status: item.json.http_status,\n      source_html: item.json.data.substring(0, 3000)\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -800,
+        240
+      ],
+      "id": "f1cc26ae-fa00-475c-9dcb-5e741a2e832c",
+      "name": "Code in JavaScript6"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  return {\n    json: {\n      source: item.json.source,\n      http_status: item.json.http_status,\n      source_html: item.json.data.substring(0, 3000)\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -800,
+        640
+      ],
+      "id": "dbe84b80-75ce-4654-ad8d-40dc42a4e7f2",
+      "name": "Code in JavaScript7"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  return {\n    json: {\n      source: item.json.source,\n      http_status: item.json.http_status,\n      source_html: item.json.data.substring(0, 3000)\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -800,
+        1040
+      ],
+      "id": "ba8f1f01-50ca-4cad-857c-1c8101da9a67",
+      "name": "Code in JavaScript8"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  return {\n    json: {\n      source: item.json.source,\n      http_status: item.json.http_status,\n      source_html: item.json.data.substring(0, 3000)\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -800,
+        1440
+      ],
+      "id": "54940e77-3d15-47b8-8bf0-ce6effc03766",
+      "name": "Code in JavaScript9"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  return {\n    json: {\n      source: item.json.source,\n      http_status: item.json.http_status,\n      source_html: item.json.data.substring(0, 3000)\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -800,
+        1840
+      ],
+      "id": "bcfbc7d9-2897-480e-94a6-d2145f63c715",
+      "name": "Code in JavaScript10"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b3384376-223c-4b9e-b556-5f737121f903",
+              "name": "source",
+              "value": "=TechCabal",
+              "type": "string"
+            },
+            {
+              "id": "5e5ce09a-80fe-4d2f-a0d9-e36d94cfa8fc",
+              "name": "http_status",
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "id": "582f1c94-ca22-4a7c-9e55-f7f0e7e3c0f4",
+              "name": "data",
+              "value": "={{ $json.data }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1024,
+        240
+      ],
+      "id": "74658c5e-c68d-4f6b-825c-dbac8f38a63f",
+      "name": "Set: Source Status"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "023d59ee-287f-44fd-8471-15bd5aebb954",
+              "name": "source",
+              "value": "Business Daily",
+              "type": "string"
+            },
+            {
+              "id": "fb2566e5-7697-403a-a25d-2cc47ea4f426",
+              "name": "http_status",
+              "value": "http_status",
+              "type": "string"
+            },
+            {
+              "id": "adf09980-9664-409c-b4fe-fd5cb225c52e",
+              "name": "data",
+              "value": "={{ $json.data }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1024,
+        640
+      ],
+      "id": "63e947c5-f3f5-4fc2-818d-825e7a9cfa89",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0a4c56f7-5faf-4bfc-95ec-58474354adb3",
+              "name": "source",
+              "value": "The Star",
+              "type": "string"
+            },
+            {
+              "id": "b249ba8e-5061-4a56-a318-640f23a00743",
+              "name": "http_status",
+              "value": "Sucess",
+              "type": "string"
+            },
+            {
+              "id": "8f640d6e-3bfb-4ac8-8985-af34bff70c0f",
+              "name": "data",
+              "value": "={{ $json.data }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1024,
+        1040
+      ],
+      "id": "53951709-9838-4a43-86e8-f789f62a6f99",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6ab0b72a-c707-4bac-97e8-be78f2c7c916",
+              "name": "source",
+              "value": "Standard",
+              "type": "string"
+            },
+            {
+              "id": "d5b48a35-ded7-45c2-ac99-9d89c5a12a5d",
+              "name": "http_status",
+              "value": "Sucess",
+              "type": "string"
+            },
+            {
+              "id": "5a7a29cc-ac12-4756-b760-184c03f07af2",
+              "name": "data",
+              "value": "={{ $json.data }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1024,
+        1440
+      ],
+      "id": "5224ce77-00e7-4dff-bf30-f6698c5e2423",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "df0e51a6-dba4-47b3-bddd-b1101f3638ce",
+              "name": "source",
+              "value": "Kenyan WallStreet",
+              "type": "string"
+            },
+            {
+              "id": "3ad98299-4bff-4011-8040-8f9a149a8ff9",
+              "name": "http_status",
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "id": "e63f1b7a-5df0-4cd7-ab01-2228d8d1926a",
+              "name": "data",
+              "value": "={{ $json.data }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1024,
+        1840
+      ],
+      "id": "8998e5fc-8541-43a4-9217-725219023c4e",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "jsCode": "const summaries = items.map(item => item.json);\n\nreturn [\n  {\n    json: {\n      summaries\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        560,
+        1040
+      ],
+      "id": "fdaf9d73-c4ea-4062-9e32-2185b246f51b",
+      "name": "Code in JavaScript11"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Weekly Newsletter Trigger": {
+      "main": [
+        [
+          {
+            "node": "TechCabal",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Business Daily",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "The Star",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Standard",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Kenyan WallStreet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TechCabal": {
+      "main": [
+        [
+          {
+            "node": "Set: Source Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Business Daily": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "The Star": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Standard": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kenyan WallStreet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarize TechCabal",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Summarize TechCabal",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarize Business Daily",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "Summarize Business Daily",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarize The Star",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "Summarize The Star",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarize Standard",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory3": {
+      "ai_memory": [
+        [
+          {
+            "node": "Summarize Standard",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarize Kenyan Wallstreet",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory4": {
+      "ai_memory": [
+        [
+          {
+            "node": "Summarize Kenyan Wallstreet",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize TechCabal": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize Business Daily": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "chief editor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory5": {
+      "ai_memory": [
+        [
+          {
+            "node": "chief editor",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mistral Cloud Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "chief editor",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Extract text in Mistral AI": {
+      "ai_tool": [
+        [
+          {
+            "node": "Summarize The Star",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract text in Mistral AI1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Summarize Standard",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract text in Mistral AI2": {
+      "ai_tool": [
+        [
+          {
+            "node": "Summarize Kenyan Wallstreet",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract text in Mistral AI3": {
+      "ai_tool": [
+        [
+          {
+            "node": "Summarize TechCabal",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract text in Mistral AI4": {
+      "ai_tool": [
+        [
+          {
+            "node": "Summarize Business Daily",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize The Star": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize Standard": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize Kenyan Wallstreet": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "chief editor": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "IF: Valid_JSON?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "IF: Valid_JSON?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "IF: Valid_JSON?2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript3": {
+      "main": [
+        [
+          {
+            "node": "IF: Valid_JSON?3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript4": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "IF: Valid_JSON?2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "IF: Valid_JSON?3": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "IF: Valid_JSON?1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "IF: Valid_JSON?": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript5": {
+      "main": [
+        [
+          {
+            "node": "IF: Newsletter_Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: Newsletter_Valid?": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Backup AI AgentAgent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        []
+      ]
+    },
+    "OpenAI Chat Model6": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Backup AI AgentAgent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory6": {
+      "ai_memory": [
+        [
+          {
+            "node": "Backup AI AgentAgent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract text in Mistral AI5": {
+      "ai_tool": [
+        [
+          {
+            "node": "Backup AI AgentAgent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript6": {
+      "main": [
+        [
+          {
+            "node": "Summarize TechCabal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript7": {
+      "main": [
+        [
+          {
+            "node": "Summarize Business Daily",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript8": {
+      "main": [
+        [
+          {
+            "node": "Summarize The Star",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript9": {
+      "main": [
+        [
+          {
+            "node": "Summarize Standard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript10": {
+      "main": [
+        [
+          {
+            "node": "Summarize Kenyan Wallstreet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set: Source Status": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript11": {
+      "main": [
+        [
+          {
+            "node": "chief editor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "1YzEV43EtgDPH85y",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "a8356161-c5e9-4c4f-8c43-1f43dcab7355",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e99daf14c79c0154b51a81f3f7ae5a32a676ca7586c42b2395dde223381c9944"
+  },
+  "id": "c8jN7672R5UmQsqM",
+  "tags": []
+}
