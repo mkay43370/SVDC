@@ -6,11 +6,7 @@
         "rule": {
           "interval": [
             {
-              "field": "weeks",
-              "triggerAtDay": [
-                5
-              ],
-              "triggerAtHour": 14
+              "field": "hours"
             }
           ]
         }
@@ -19,7 +15,7 @@
       "typeVersion": 1.3,
       "position": [
         -656,
-        1616
+        1692
       ],
       "id": "5b453973-d175-4bb2-b6e2-cc9e3baf854d",
       "name": "Weekly Newsletter Trigger"
@@ -32,7 +28,7 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        144,
+        496,
         784
       ],
       "id": "7efdd937-af91-47d1-8aaa-27bd862e4b5f",
@@ -46,8 +42,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        144,
-        1184
+        496,
+        1288
       ],
       "id": "46a52eb8-760a-466f-874e-8a2ebf364c49",
       "name": "Simple Memory1"
@@ -60,8 +56,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        144,
-        1584
+        496,
+        1760
       ],
       "id": "71783e45-7392-41c2-ac2d-fe5f7768c45a",
       "name": "Simple Memory2"
@@ -74,8 +70,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        1504,
-        1888
+        1856,
+        2064
       ],
       "id": "0851082d-0604-4eb6-a482-972fecf186c1",
       "name": "Simple Memory5"
@@ -87,8 +83,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        480,
-        672
+        784,
+        592
       ],
       "id": "9bc1421c-c115-4f3a-9d27-f583ab3ba1d5",
       "name": "Code in JavaScript"
@@ -107,8 +103,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        2288,
-        2144
+        2640,
+        2308
       ],
       "id": "e3f00189-9160-486a-bc5b-c227e561de97",
       "name": "OpenAI Chat Model6",
@@ -127,8 +123,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        2416,
-        2144
+        2768,
+        2308
       ],
       "id": "f1a0b9d6-afa9-464d-b189-e1fcc5314cf2",
       "name": "Simple Memory6"
@@ -140,8 +136,8 @@
       "type": "n8n-nodes-base.mistralAiTool",
       "typeVersion": 1,
       "position": [
-        2544,
-        2144
+        2896,
+        2308
       ],
       "id": "c3a005da-1629-4a5c-93cf-55f7f000c5c3",
       "name": "Extract text in Mistral AI5",
@@ -164,8 +160,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
       "position": [
-        -432,
-        1072
+        -208,
+        1064
       ],
       "id": "fb65eaea-0800-4869-9557-3b1843c7f49f",
       "name": "NCBA",
@@ -181,7 +177,7 @@
       "typeVersion": 4.4,
       "position": [
         -432,
-        1472
+        1448
       ],
       "id": "edcac20d-318f-41ab-8464-8fa13a1be0cf",
       "name": "NSE",
@@ -195,7 +191,7 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        272,
+        624,
         784
       ],
       "id": "3fcc7074-9be6-45b7-b6bf-8e1268fbedb2",
@@ -208,7 +204,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
       "typeVersion": 1,
       "position": [
-        16,
+        240,
         784
       ],
       "id": "3753bba7-3b45-4bbd-bcee-83ab6bdd7a5b",
@@ -227,8 +223,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
       "typeVersion": 1,
       "position": [
-        16,
-        1184
+        240,
+        1288
       ],
       "id": "085d6d82-022c-416c-936a-9713d7350ca0",
       "name": "Mistral Cloud Chat Model2",
@@ -246,8 +242,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        272,
-        1184
+        624,
+        1288
       ],
       "id": "98831d51-b1bc-446f-b5a5-95f8dd09a2b4",
       "name": "Structured Output Parser7"
@@ -259,8 +255,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
       "typeVersion": 1,
       "position": [
-        16,
-        1584
+        240,
+        1760
       ],
       "id": "9501f4f8-2127-4134-86e1-cb6e645068d7",
       "name": "Mistral Cloud Chat Model3",
@@ -278,8 +274,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        272,
-        1584
+        624,
+        1760
       ],
       "id": "c3443bba-1ab6-4216-816c-b3c5541ee254",
       "name": "Structured Output Parser8"
@@ -291,8 +287,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
       "typeVersion": 1,
       "position": [
-        1376,
-        1888
+        1728,
+        2064
       ],
       "id": "29712882-41e0-43bb-98dd-3a2f1a1dd983",
       "name": "Mistral Cloud Chat Model",
@@ -310,8 +306,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        1632,
-        1888
+        1984,
+        2064
       ],
       "id": "c0e89f39-c268-4382-8de8-5ad923c899f2",
       "name": "Structured Output Parser"
@@ -323,8 +319,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
       "typeVersion": 1,
       "position": [
-        16,
-        2896
+        240,
+        3064
       ],
       "id": "bb020da2-a550-4188-ab5e-dfac92dac97b",
       "name": "Mistral Cloud Chat Model4",
@@ -343,8 +339,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        144,
-        2896
+        496,
+        3064
       ],
       "id": "5ce2b6ab-56cf-45e2-8627-5104f56d7136",
       "name": "Simple Memory3"
@@ -356,8 +352,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        272,
-        2896
+        624,
+        3064
       ],
       "id": "40e31579-5e1a-427e-80b6-e02711b23e50",
       "name": "Structured Output Parser1"
@@ -370,8 +366,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
       "position": [
-        -432,
-        672
+        -208,
+        664
       ],
       "id": "677d6b45-d142-4def-be0f-204dd58d531d",
       "name": "Floatrates",
@@ -385,21 +381,21 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        928,
-        1600
+        1280,
+        1776
       ],
       "id": "f3c3329e-5a30-4d91-8987-913ff24a5d83",
       "name": "Merge Forex Sources"
     },
     {
       "parameters": {
-        "jsCode": "const items = $input.all();\n\n// Build lookup table\nconst currencies = {};\n\nfor (const item of items) {\n  const source = item.json.source || item.json.title;\n\n  for (const rate of (item.json.rates || [])) {\n    const currency = rate.currency;\n\n    if (!currencies[currency]) {\n      currencies[currency] = {};\n    }\n\n    currencies[currency][source] = rate.kes_per_unit;\n  }\n}\n\nlet html = `\n<h2>Forex Comparison Dashboard</h2>\n\n<table border=\"1\" cellpadding=\"5\" cellspacing=\"0\">\n<tr>\n<th>Currency</th>\n<th>FloatRates</th>\n<th>NCBA</th>\n<th>ExchangeRate API</th>\n</tr>\n`;\n\nfor (const currency of Object.keys(currencies)) {\n  html += `\n  <tr>\n    <td>${currency}</td>\n    <td>${currencies[currency][\"FloatRates Forex Rates\"] || \"-\"}</td>\n    <td>${currencies[currency][\"NCBA Rates\"] || \"-\"}</td>\n    <td>${currencies[currency][\"ExchangeRate API Forex Rates\"] || \"-\"}</td>\n  </tr>\n  `;\n}\n\nhtml += `</table>`;\n\nreturn [{\n  json: {\n    dashboard_html: html\n  }\n}];"
+        "jsCode": "const items = $input.all();\n\n// Build lookup table\nconst currencies = {};\n\nfor (const item of items) {\n  const source = item.json.source || item.json.title;\n\n  for (const rate of (item.json.rates || [])) {\n    const currency = rate.currency;\n\n    if (!currencies[currency]) {\n      currencies[currency] = {};\n    }\n\n    currencies[currency][source] = rate.kes_per_unit;\n  }\n}\n\nlet html = `\n\n\n<table border=\"1\" cellpadding=\"5\" cellspacing=\"0\">\n<tr>\n<th>Currency</th>\n<th>FloatRates</th>\n<th>NCBA</th>\n<th>ExchangeRate API</th>\n</tr>\n`;\n\nfor (const currency of Object.keys(currencies)) {\n  html += `\n  <tr>\n    <td>${currency}</td>\n    <td>${currencies[currency][\"FloatRates Forex Rates\"] || \"-\"}</td>\n    <td>${currencies[currency][\"NCBA Rates\"] || \"-\"}</td>\n    <td>${currencies[currency][\"ExchangeRate API Forex Rates\"] || \"-\"}</td>\n  </tr>\n  `;\n}\n\nhtml += `</table>`;\n\nreturn [{\n  json: {\n    dashboard_html: html\n  }\n}];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1152,
-        1664
+        1504,
+        1840
       ],
       "id": "fd3a25ca-1d2e-4a64-a261-72c8ac58f97a",
       "name": "Build Comparison Dashboard"
@@ -411,8 +407,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1840,
-        1664
+        2192,
+        1840
       ],
       "id": "62a56d77-281d-420d-94cd-f7a2baaa1ce9",
       "name": "Format Newsletter Output"
@@ -465,8 +461,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        2064,
-        1664
+        2416,
+        1840
       ],
       "id": "c6deb9ce-3921-4136-8c08-a595326efaf7",
       "name": "Validate Newsletter",
@@ -482,8 +478,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        2416,
-        1424
+        2760,
+        1596
       ],
       "id": "54f6cd77-2193-40ac-938e-137a95557036",
       "name": "Send Newsletter Email",
@@ -565,8 +561,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        2416,
-        1616
+        2760,
+        1788
       ],
       "id": "079e4695-d1a9-4a18-8194-7c3315b6244c",
       "name": "Log Newsletter Archive",
@@ -582,12 +578,13 @@
         "promptType": "define",
         "text": "=Extract the top forex exchange rates against the Kenyan Shilling (KES).\n\nReturn ONLY valid JSON.\n\nsource = \"FloatRates\"\ntitle = \"FloatRates Forex Rates\"\nbase_currency = \"KES\"\n\nInclude major currencies such as USD, GBP, EUR, ZAR, JPY, AUD, CAD and any other available currencies.\n\nFor each currency return:\n- currency\n- kes_per_unit",
         "hasOutputParser": true,
+        "needsFallback": true,
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        80,
+        336,
         560
       ],
       "id": "0fb73266-017d-47a1-8da5-a0c67e95c7a4",
@@ -598,13 +595,14 @@
         "promptType": "define",
         "text": "=Extract the top forex exchange rates against the Kenyan Shilling (KES).\n\nReturn ONLY valid JSON.\n\nsource = \"NCBA\"\ntitle = \"NCBA Rates\"\nbase_currency = \"KES\"\n\nInclude major currencies such as USD, GBP, EUR, ZAR, JPY, AUD, CAD and any other available currencies.\n\nFor each currency return:\n- currency\n- kes_per_unit",
         "hasOutputParser": true,
+        "needsFallback": true,
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        80,
-        960
+        336,
+        1064
       ],
       "id": "977ebbb9-7646-45db-a4d7-56364b516c8e",
       "name": "Summarize NCBA Rates"
@@ -614,13 +612,14 @@
         "promptType": "define",
         "text": "=Extract the forex exchange rates from NCBA data.\n\nReturn ONLY valid JSON.\n\nsource = \"NSE\"\ntitle = \"NSE Forex Rates\"\nbase_currency = \"KES\"\n\nInclude major currencies such as USD, GBP, EUR, ZAR, JPY, AUD and CAD.\n\nFor each currency return:\n- currency\n- kes_per_unit",
         "hasOutputParser": true,
+        "needsFallback": true,
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        80,
-        1360
+        336,
+        1536
       ],
       "id": "52350b83-9c40-489a-ac84-1102ba454789",
       "name": "Summarize NSE Rates"
@@ -632,7 +631,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -208,
+        16,
         672
       ],
       "id": "06178eb5-428d-4877-acd0-87792891d260",
@@ -645,8 +644,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -208,
-        1072
+        16,
+        1064
       ],
       "id": "7706355d-92af-4c3b-8658-cdad793d0814",
       "name": "NCBA Formatter"
@@ -658,8 +657,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -208,
-        1472
+        16,
+        1640
       ],
       "id": "4ea51c15-caa9-4187-a0ba-d66e564dbd25",
       "name": "NSE Formatter"
@@ -671,8 +670,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -208,
-        2672
+        16,
+        2840
       ],
       "id": "4520d1ea-f024-41fe-87b5-029baea661b2",
       "name": "ExchangeRate Formatter"
@@ -685,8 +684,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
       "position": [
-        -432,
-        2672
+        -208,
+        2840
       ],
       "id": "2a5f9955-a049-4c46-8c02-fa7075ccd968",
       "name": "ExchangeRate API",
@@ -700,8 +699,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        480,
-        1072
+        832,
+        1064
       ],
       "id": "de3e11b7-975a-4005-a37d-a577c4aec658",
       "name": "Format NCBA Output"
@@ -713,8 +712,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        480,
-        2672
+        832,
+        2840
       ],
       "id": "00a1d403-0594-491c-8c3f-ea62829bd2a0",
       "name": "Format ExchangeRate Output"
@@ -746,8 +745,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        704,
-        2672
+        1056,
+        2840
       ],
       "id": "60f14c3b-e76d-40ff-8dd0-e43ce18f7e9f",
       "name": "Validate ExchangeRate JSON"
@@ -779,8 +778,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        704,
-        1472
+        1056,
+        1640
       ],
       "id": "cf3a1cef-56f0-4a59-a1a2-2e5b44dd428d",
       "name": "Validate NSE JSON1"
@@ -790,13 +789,14 @@
         "promptType": "define",
         "text": "You are a financial data analyst.\n\nAnalyze the provided ExchangeRate API data and extract the major forex exchange rates against the Kenyan Shilling (KES).\n\nReturn ONLY valid JSON.\n\nRequirements:\n- source = \"ExchangeRate API\"\n- title = \"ExchangeRate API Forex Rates\"\n- base_currency = \"KES\"\n- Include only major currencies: USD, GBP, EUR, ZAR, JPY, AUD, CAD.\n- For each currency provide:\n  - currency\n  - kes_per_unit\n- Do not include explanations.\n- Do not include markdown.\n- Do not include text outside the JSON.\n\nExample format:\n\n{\n  \"source\": \"ExchangeRate API\",\n  \"title\": \"ExchangeRate API Forex Rates\",\n  \"base_currency\": \"KES\",\n  \"rates\": [\n    {\n      \"currency\": \"USD\",\n      \"kes_per_unit\": \"132.50\"\n    }\n  ]\n}",
         "hasOutputParser": true,
+        "needsFallback": true,
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        80,
-        2672
+        336,
+        2840
       ],
       "id": "63099c63-7aad-43da-a47a-d3c329f3f83b",
       "name": "Summarize ExchangeRate API"
@@ -811,8 +811,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        1440,
-        1664
+        1784,
+        1840
       ],
       "id": "4be99acc-bfde-472f-916c-d55faabfca78",
       "name": "chief editor AI"
@@ -826,8 +826,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        2352,
-        1920
+        2696,
+        2084
       ],
       "id": "e81f79be-4c26-4296-b505-ca97a54c125e",
       "name": "Fallback Newsletter AI"
@@ -860,8 +860,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        704,
-        672
+        1024,
+        608
       ],
       "id": "16c9277a-9ed9-4d01-a24b-46be54d7956a",
       "name": "Validate FloatRates JSON1",
@@ -894,8 +894,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        704,
-        1072
+        1056,
+        1064
       ],
       "id": "3eab3a29-91bb-4f8e-9c2d-dc16c63b150e",
       "name": "Validate NCBA JSON"
@@ -907,8 +907,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        480,
-        1472
+        832,
+        1640
       ],
       "id": "2d3ee881-6467-4389-9708-147b8d3a0a30",
       "name": "Format NSE JSON"
@@ -917,14 +917,14 @@
       "parameters": {
         "content": "SUCCESSFUL FOREX SOURCES\n\nThese sources are queried successfully and provide exchange rate data for comparison.",
         "height": 2656,
-        "width": 800,
+        "width": 980,
         "color": 4
       },
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -784,
-        176
+        -658,
+        656
       ],
       "id": "7c10b6de-c2b1-430f-a4c0-460fab68b2f9",
       "name": "Sticky Note"
@@ -938,8 +938,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -64,
-        352
+        344,
+        312
       ],
       "id": "500781b1-e955-4657-8df4-19c765ed6812",
       "name": "Sticky Note1"
@@ -953,8 +953,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        864,
-        1360
+        1216,
+        1536
       ],
       "id": "911b3df6-0b11-4a86-9be7-ba6bf618426e",
       "name": "Sticky Note2"
@@ -969,8 +969,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1200,
-        1248
+        1552,
+        1412
       ],
       "id": "6d7093b2-be1a-45bb-bd9c-0f1a1e23e7ea",
       "name": "Sticky Note3"
@@ -982,8 +982,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
       "typeVersion": 1,
       "position": [
-        16,
-        1984
+        240,
+        2160
       ],
       "id": "b9077094-8ee4-46e8-9515-0efdd860c68d",
       "name": "Mistral Cloud Chat Model5",
@@ -1001,8 +1001,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        272,
-        1984
+        624,
+        2160
       ],
       "id": "e965afa0-0680-4515-a39c-b2455589d2cd",
       "name": "Structured Output Parser2"
@@ -1014,8 +1014,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        480,
-        1872
+        832,
+        2040
       ],
       "id": "91878d6d-4a83-4047-a181-9d91a7f1e6eb",
       "name": "Code in JavaScript2"
@@ -1047,8 +1047,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        704,
-        1872
+        1056,
+        2040
       ],
       "id": "1db21035-c2f2-4919-a72a-1a3e1e50d477",
       "name": "If"
@@ -1061,8 +1061,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        144,
-        1984
+        496,
+        2160
       ],
       "id": "d472b363-842b-43db-8b48-f1b77d7d6756",
       "name": "Simple Memory4"
@@ -1074,8 +1074,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -208,
-        2272
+        16,
+        2440
       ],
       "id": "4eefac44-47cc-4e4f-a7ef-bcefab3c6e45",
       "name": "Code in JavaScript3"
@@ -1087,8 +1087,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
       "typeVersion": 1,
       "position": [
-        16,
-        2384
+        240,
+        2560
       ],
       "id": "39ada37d-b9bd-4e9d-acef-707e5d6a25cd",
       "name": "Mistral Cloud Chat Model6",
@@ -1107,8 +1107,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        144,
-        2384
+        496,
+        2560
       ],
       "id": "34c7c543-a113-4f98-b55f-e7074de4b71c",
       "name": "Simple Memory7"
@@ -1120,8 +1120,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        272,
-        2384
+        624,
+        2560
       ],
       "id": "5a0c8ea2-5745-4e12-b485-f8dc520777ae",
       "name": "Structured Output Parser3"
@@ -1133,8 +1133,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        480,
-        2272
+        832,
+        2440
       ],
       "id": "a21d0d5f-ba03-455c-bd55-1606eb2bc55d",
       "name": "Code in JavaScript4"
@@ -1167,8 +1167,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        704,
-        2272
+        1056,
+        2440
       ],
       "id": "69f3c8bf-77c0-4b5d-950c-7daef55d1609",
       "name": "If1"
@@ -1181,8 +1181,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
       "position": [
-        -432,
-        1872
+        -208,
+        2040
       ],
       "id": "127ab7bf-2a78-4308-bdad-592acc53cec1",
       "name": "CBK",
@@ -1197,8 +1197,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
       "position": [
-        -432,
-        2272
+        -208,
+        2440
       ],
       "id": "a78c11d9-834b-41b4-9b5a-d811fd46cf38",
       "name": "Bank Of Africa",
@@ -1210,13 +1210,14 @@
         "promptType": "define",
         "text": "Extract the top forex exchange rates against the Kenyan Shilling (KES).\n\nReturn ONLY valid JSON.\n\nsource = \"CBK\"\ntitle = \"NCBA Rates\"\nbase_currency = \"KES\"\n\nInclude major currencies such as USD, GBP, EUR, ZAR, JPY, AUD, CAD and any other available currencies.\n\nFor each currency return:\n- currency\n- kes_per_unit",
         "hasOutputParser": true,
+        "needsFallback": true,
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        80,
-        1760
+        336,
+        1936
       ],
       "id": "612ad037-4f4c-491f-bdab-dc9c0b34f3ac",
       "name": "Summarize CBK Rates"
@@ -1228,8 +1229,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -208,
-        1872
+        16,
+        2040
       ],
       "id": "ef4cdab9-624e-4f83-b317-1c8a750159cc",
       "name": "CBK rate formatter"
@@ -1239,16 +1240,341 @@
         "promptType": "define",
         "text": "Extract the forex exchange rates from NCBA data.\n\nReturn ONLY valid JSON.\n\nsource = \"Bank Of Africa\"\ntitle = \"BOA Forex Rates\"\nbase_currency = \"KES\"\n\nInclude major currencies such as USD, GBP, EUR, ZAR, JPY, AUD and CAD.\n\nFor each currency return:\n- currency\n- kes_per_unit",
         "hasOutputParser": true,
+        "needsFallback": true,
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        80,
-        2160
+        336,
+        2336
       ],
       "id": "3db0d063-a141-49e0-a788-7757a04f4ee8",
       "name": "Summarize Bank Of Africa"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4959ea5d-f51b-444c-b064-cbba446e11e6",
+              "leftValue": "{{$json.error}}",
+              "rightValue": "=",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -208,
+        1448
+      ],
+      "id": "568fb063-8c6f-4433-aa8e-f482f053e951",
+      "name": "Check NSE Error"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1B6p_MljpvBzE_r4rRfG0aV8llCmHTG-TqSmgyjI4CVw/edit?gid=387204979#gid=387204979",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 387204979,
+          "mode": "list",
+          "cachedResultName": "ERRORlogs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1B6p_MljpvBzE_r4rRfG0aV8llCmHTG-TqSmgyjI4CVw/edit#gid=387204979"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{ $json.timestamp }}",
+            "Error Message": "={{ $json.error.message }}",
+            "Source": "NSE",
+            "Error Type": "={{$json.error.name}}",
+            "Status": "Failed"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Source",
+              "displayName": "Source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Error Message",
+              "displayName": "Error Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Error Type",
+              "displayName": "Error Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        16,
+        1256
+      ],
+      "id": "8bc9454e-83bf-474d-8a64-eed68bcfaad2",
+      "name": "Log NSE Error",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vavbbBSkkcvpuObM",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "\tmaryanne.kinyanjui@student.moringaschool.com, simon.njuguna1@student.moringaschool.com, paul.wahome@student.moringaschool.com",
+        "subject": "🚨 Forex Workflow Error - Data Collection Failed",
+        "emailType": "text",
+        "message": "=An error occurred during the Forex Rates Automation workflow.  Source: NSE Data Collection  Timestamp: {{$json.timestamp}}  Error Message: {{$json.error.message}}  Error Type: {{$json.error.name}}  Workflow Status: FAILED  Please review the workflow execution and investigate the failed HTTP Request node.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        16,
+        1448
+      ],
+      "id": "4829247b-177c-40de-a83e-75e6b5a6ad02",
+      "name": "Email NSE Failure",
+      "webhookId": "c97612f1-9c84-4e95-a51b-3700f7cd5916",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "uClAil3mj5svKY8h",
+          "name": "mkay gmail"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        368,
+        784
+      ],
+      "id": "6bc6c449-335d-434a-82a1-78eb2c3ef258",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "WR3iiP5D6FLhBd3C",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -656,
+        3168
+      ],
+      "id": "e100df16-71d0-494c-b132-5a59a35a7c92",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "xfMfgaPNxCRgCEWJ",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        368,
+        1288
+      ],
+      "id": "ef834a96-9c04-4384-bec5-49dda83cf28b",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "WR3iiP5D6FLhBd3C",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        368,
+        1760
+      ],
+      "id": "c71f5072-4bac-4357-a218-174f4c83c772",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "WR3iiP5D6FLhBd3C",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        368,
+        2160
+      ],
+      "id": "11ee2d90-052e-4698-b599-081bbce2b869",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "WR3iiP5D6FLhBd3C",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        368,
+        2560
+      ],
+      "id": "ae8d9070-3356-4c91-b5ae-3f4b5c9393b0",
+      "name": "OpenAI Chat Model4",
+      "credentials": {
+        "openAiApi": {
+          "id": "WR3iiP5D6FLhBd3C",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        368,
+        3064
+      ],
+      "id": "c7c8c3e7-bb5b-44e2-ae4e-c6c47b39c029",
+      "name": "OpenAI Chat Model5",
+      "credentials": {
+        "openAiApi": {
+          "id": "WR3iiP5D6FLhBd3C",
+          "name": "OpenAI account 2"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -1393,7 +1719,7 @@
         [],
         [
           {
-            "node": "NSE Formatter",
+            "node": "Check NSE Error",
             "type": "main",
             "index": 0
           }
@@ -1950,15 +2276,110 @@
           }
         ]
       ]
+    },
+    "Check NSE Error": {
+      "main": [
+        [
+          {
+            "node": "Log NSE Error",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Email NSE Failure",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NSE Formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarize FloatRates",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarize NCBA Rates",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarize NSE Rates",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarize CBK Rates",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarize Bank Of Africa",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarize ExchangeRate API",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "0da4576a-5eab-4485-abd0-f7b55e598a18",
+  "versionId": "f550a8ba-c31f-421d-bc15-47e3b1e9cd55",
   "meta": {
+    "templateCredsSetupCompleted": true,
     "instanceId": "e99daf14c79c0154b51a81f3f7ae5a32a676ca7586c42b2395dde223381c9944"
   },
   "id": "CCQS6rKKB1zdmPKb",
